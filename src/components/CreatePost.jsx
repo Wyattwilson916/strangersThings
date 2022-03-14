@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createPost } from "../api";
 
-const CreatePost = () => {
+const CreatePost = ( { } ) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
