@@ -22,7 +22,7 @@ const LoginStatus = ({ setToken }) => {
           e.preventDefault();
 
           const result = await userLogin(username, password);
-
+          console.log(result);
           localStorage.setItem("token", result.data.token);
           const myToken = localStorage.getItem("token");
         }}

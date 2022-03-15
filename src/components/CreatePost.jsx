@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createPost } from "../api";
 
-const CreatePost = ( { token } ) => {
+const CreatePost = ({ token, setPosts, posts }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -15,6 +15,8 @@ const CreatePost = ( { token } ) => {
     const token = localStorage.getItem("token");
     const response = await createPost(postDetailsObj, token);
     console.log(response);
+    const newPost = response.data.post;
+    setPosts([newPost, ...posts]);
   };
 
   return (
@@ -50,7 +52,7 @@ const CreatePost = ( { token } ) => {
           type="checkbox"
           value={willDeliver}
           onChange={(e) => {
-            setWillDeliver(willDeliver);
+            setWillDeliver(!willDeliver);
           }}
         />
         <button type="submit">Create Post</button>

@@ -34,7 +34,6 @@ export const userLogin = async (username, password) => {
   return data;
 };
 
-
 export const fetchPosts = async () => {
   const response = await fetch(`${apiUrl}posts`);
   const data = response.json();

@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { registerUser } from "../api";
 
-
-const SignUp = ( { setToken } ) => {
+const SignUp = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <div>
       <form
-        onSubmit={async(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
 
-          const result = await registerUser(username, password)
-
-          localStorage.setItem('token', result.data.token)
-          const myToken = localStorage.getItem('token')
+          const result = await registerUser(username, password);
+          console.log(result);
+          localStorage.setItem("token", result.data.token);
+          const myToken = localStorage.getItem("token");
         }}
       >
         <input
@@ -40,4 +39,4 @@ const SignUp = ( { setToken } ) => {
   );
 };
 
-export default SignUp
+export default SignUp;
