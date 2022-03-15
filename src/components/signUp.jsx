@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { registerUser } from "../api";
 
+
 const SignUp = ( { setToken } ) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   return (
     <div>
       <form
         onSubmit={async(e) => {
           e.preventDefault();
+
           const result = await registerUser(username, password)
-          console.log(result.data.token)
+
           localStorage.setItem('token', result.data.token)
           const myToken = localStorage.getItem('token')
         }}
