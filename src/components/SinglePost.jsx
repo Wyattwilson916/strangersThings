@@ -19,7 +19,7 @@ const SinglePost = ({ token, post, posts, setPosts }) => {
     <div>
       <h1>{post.title}</h1>
       <h2>{post.description}</h2>
-      <h3>{`Location: ${post.location}`}</h3>
+      <h3>{post.location.includes('[', 0) ? 'Location: Available upon Request' : `Location: ${post.location}`}</h3>
       <h4>{post.price.includes("$", 0) ? post.price : `$${post.price}`}</h4>
       <h4>{post.willDeliver ? "Will Deliver" : "Will Not Deliver"}</h4> 
       <form

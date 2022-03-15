@@ -61,6 +61,24 @@ export const createPost = async (postDetails, token) => {
   return data;
 };
 
+export const myData = async () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    try {
+      const response = await fetch(`${apiUrl}users/me`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = response.json();
+      return data;
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+};
+
 export const updatePost = async (updateObj, token, postId) => {
   const response = await fetch(`${apiUrl}posts/${postId}`, {
     method: "PATCH",
