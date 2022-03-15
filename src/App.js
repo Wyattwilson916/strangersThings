@@ -17,7 +17,7 @@ function App() {
   async function fetchUserData(){
     try {
       const myInfo = await myData()
-      console.log(myInfo, '!!!!')
+      
       setUserPosts(myInfo.data.posts)
       setUserMessages(myInfo.data.messages)
       setCurrentUsername(myInfo.data.username)
