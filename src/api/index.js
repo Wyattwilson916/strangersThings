@@ -61,8 +61,7 @@ export const createPost = async (postDetails, token) => {
   return data;
 };
 
-export const myData = async () => {
-  const token = localStorage.getItem("token");
+export const myData = async (token) => {
   if (token) {
     try {
       const response = await fetch(`${apiUrl}users/me`, {
@@ -89,6 +88,18 @@ export const updatePost = async (updateObj, token, postId) => {
     body: JSON.stringify({
       post: updateObj,
     }),
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const deletePost = async (token, postId) => {
+  const response = await fetch(`${apiUrl}posts/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
   const data = await response.json();
   return data;

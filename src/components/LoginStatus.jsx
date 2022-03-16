@@ -14,13 +14,16 @@ import { userLogin } from "../api";
 const LoginStatus = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [zero, setZero] = useState("subm");
+
+  // if(login === true){
+  //   hide Login, show logout
+  // }
+
   return (
     <div>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          setZero(1);
           const result = await userLogin(username, password);
           console.log(result);
           localStorage.setItem("token", result.data.token);
@@ -43,13 +46,8 @@ const LoginStatus = ({ setToken }) => {
             setPassword(e.target.value);
           }}
         />
-        {/* <button type="submit">Login</button> */}
-      </form>
-      {<button type="submit">Login</button> ? (
-        zero
-      ) : (
         <button type="submit">Login</button>
-      )}
+      </form>
     </div>
   );
 };

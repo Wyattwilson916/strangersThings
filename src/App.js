@@ -13,41 +13,35 @@ function App() {
   const [currentUsername, setCurrentUsername] = useState("");
   const [userId, setUserId] = useState("");
 
-  async function fetchUserData() {
-    try {
-      const myInfo = await myData();
-
-      setUserPosts(myInfo.data.posts);
-      setUserMessages(myInfo.data.messages);
-      setCurrentUsername(myInfo.data.username);
-      setUserId(myInfo.data._id);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
     const localStorageToken = localStorage.getItem("token");
     if (localStorageToken !== "") {
       setToken(localStorageToken);
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const myInfo = await myData(token);
+        console.log(myInfo, '!!')
+        setUserPosts(myInfo.data.posts);
+        setUserMessages(myInfo.data.messages);
+        setCurrentUsername(myInfo.data.username);
+        setUserId(myInfo.data._id);
+      } catch (error) {
+        console.log(error);
+      }
+    }
     fetchUserData();
   }, [token]);
-  console.log(
-    userPosts,
-    userMessages,
-    userId,
-    currentUsername,
-    "!!!!!!!!!!!!!!"
-  );
+   console.log(userPosts, 'userPosts', userMessages, 'userMessages', userId, 'userId', currentUsername, 'currentUsername');
+
   return (
     <div>
       <SignUp setToken={setToken} />
       <LoginStatus setToken={setToken} />
-      <Posts token={token} />
+      <Posts token={token} userObj={{userPosts, userMessages, currentUsername, userId}}/>
     </div>
   );
 }

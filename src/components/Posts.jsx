@@ -3,8 +3,12 @@ import SinglePost from "./SinglePost";
 import { fetchPosts } from "../api";
 import CreatePost from "./CreatePost";
 
-const Posts = ({ token }) => {
+const Posts = ({ token, userObj }) => {
   const [posts, setPosts] = useState([]);
+
+  console.log(userObj, '!!!!')
+  
+
   useEffect(() => {
     const getPosts = async () => {
       const result = await fetchPosts();
@@ -13,6 +17,7 @@ const Posts = ({ token }) => {
     };
     getPosts();
   }, []);
+
   return (
     <div>
       <CreatePost posts={posts} setPosts={setPosts} />
@@ -24,6 +29,7 @@ const Posts = ({ token }) => {
             token={token}
             posts={posts}
             setPosts={setPosts}
+            userObj={userObj}
           />
         );
       })}
