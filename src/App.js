@@ -6,6 +6,8 @@ import SignUp from "./components/SignUp";
 import LoginStatus from "./components/LoginStatus";
 import { myData } from "./api";
 
+//    make sure to include: Make a navbar inside. Own component and create routes inside of our routes
+
 function App() {
   const [token, setToken] = useState("");
   const [userPosts, setUserPosts] = useState([]);
@@ -40,7 +42,10 @@ function App() {
     <div>
       <SignUp setToken={setToken} />
       <LoginStatus setToken={setToken} />
-      <Posts token={token} userObj={{userPosts, userMessages, currentUsername, userId}}/>
+      <Posts
+        token={token}
+        userObj={{ userPosts, userMessages, currentUsername, userId }}
+      />
     </div>
   );
 }
