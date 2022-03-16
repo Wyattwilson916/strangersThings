@@ -24,7 +24,6 @@ function App() {
     async function fetchUserData() {
       try {
         const myInfo = await myData(token);
-        console.log(myInfo, '!!')
         setUserPosts(myInfo.data.posts);
         setUserMessages(myInfo.data.messages);
         setCurrentUsername(myInfo.data.username);
@@ -35,7 +34,7 @@ function App() {
     }
     fetchUserData();
   }, [token]);
-   console.log(userPosts, 'userPosts', userMessages, 'userMessages', userId, 'userId', currentUsername, 'currentUsername');
+  //  console.log(userPosts, 'userPosts', userMessages, 'userMessages', userId, 'userId', currentUsername, 'currentUsername');
 
   return (
     <div>

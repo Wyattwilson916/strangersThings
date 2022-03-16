@@ -23,7 +23,7 @@ const SinglePost = ({ token, post, posts, setPosts, userObj }) => {
     setPosts(filteredPosts);
   };
 
-  console.log('User obj in single post!@#$%^&', userObj )
+  // console.log('User obj in single post!@#$%^&', userObj )
   // console.log('post!!!!', post)
 
   const editInfo = (
