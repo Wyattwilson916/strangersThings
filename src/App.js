@@ -1,53 +1,26 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import CreatePost from "./components/CreatePost";
+import NavBar from "./components/Navbar";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Main from "./components/Main";
 import Posts from "./components/Posts";
-import SignUp from "./components/SignUp";
 import LoginStatus from "./components/LoginStatus";
-import { myData } from "./api";
+import SignUp from "./components/SignUp";
+import CreatePost from "./components/CreatePost";
 
-//    make sure to include: Make a navbar inside. Own component and create routes inside of our routes
-
-function App() {
-  const [token, setToken] = useState("");
-  const [userPosts, setUserPosts] = useState([]);
-  const [userMessages, setUserMessages] = useState([]);
-  const [currentUsername, setCurrentUsername] = useState("");
-  const [userId, setUserId] = useState("");
-
-  useEffect(() => {
-    const localStorageToken = localStorage.getItem("token");
-    if (localStorageToken !== "") {
-      setToken(localStorageToken);
-    }
-  }, []);
-
-  useEffect(() => {
-    async function fetchUserData() {
-      try {
-        const myInfo = await myData(token);
-        setUserPosts(myInfo.data.posts);
-        setUserMessages(myInfo.data.messages);
-        setCurrentUsername(myInfo.data.username);
-        setUserId(myInfo.data._id);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchUserData();
-  }, [token]);
-  //  console.log(userPosts, 'userPosts', userMessages, 'userMessages', userId, 'userId', currentUsername, 'currentUsername');
-
+const App = () => {
   return (
-    <div>
-      <SignUp setToken={setToken} />
-      <LoginStatus setToken={setToken} />
-      <Posts
-        token={token}
-        userObj={{ userPosts, userMessages, currentUsername, userId }}
-      />
+    <div className="main_container">
+      <NavBar />
+      <h1 className="main_title">Stranger's Things</h1>
+      <Switch>
+        <Route path='/posts' component={Posts}/>
+        <Route path='/login' component={LoginStatus}/>
+        <Route path='/sign-up' component={SignUp}/>
+        <Route path='/create-post' component={CreatePost}/>
+        <Route path='/' component={Main}/>
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;

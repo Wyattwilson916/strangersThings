@@ -3,7 +3,7 @@ import { updatePost, deletePost } from "../api";
 
 const SinglePost = ({ token, post, posts, setPosts, userObj }) => {
   const [postTitle, setPostTitle] = useState("");
-        
+    // console.log(userObj)    
   const handleSubmit = async (e, postId) => {
     e.preventDefault();
     const { data } = await updatePost({ title: postTitle }, token, postId);

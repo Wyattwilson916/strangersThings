@@ -4,7 +4,8 @@ import { registerUser } from "../api";
 const SignUp = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+// Add a 'min' property to password length
+// Make user/pass required
   return (
     <div>
       <form

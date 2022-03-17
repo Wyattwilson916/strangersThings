@@ -5,6 +5,7 @@ import CreatePost from "./CreatePost";
 
 const Posts = ({ token, userObj }) => {
   const [posts, setPosts] = useState([]);  
+  console.log(userObj)
 
   useEffect(() => {
     const getPosts = async () => {

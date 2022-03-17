@@ -14,7 +14,7 @@ import { userLogin } from "../api";
 const LoginStatus = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  console.log(userLogin(username, password))
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await userLogin(username, password);
@@ -34,9 +34,9 @@ const LoginStatus = ({ setToken }) => {
 
   return (
     <div>
-      {/* {userLogin.data.token ? (
+      {localStorage.getItem('token') ? (
         <button onClick={() => handleLogout(e, token)}>Logout</button>
-      ) : ( */}
+      ) : (
         <form
           onSubmit={(e) => {
             handleSubmit(e);
@@ -60,7 +60,7 @@ const LoginStatus = ({ setToken }) => {
           />
           <button type="submit">Login</button>
         </form>
-      {/* )} */}
+      )}
     </div>
   );
 };
