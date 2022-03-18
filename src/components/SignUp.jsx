@@ -4,18 +4,22 @@ import { registerUser } from "../api";
 const SignUp = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-// Add a 'min' property to password length
-// Make user/pass required
+  // Add a 'min' property to password length
+  // Make user/pass required
   return (
     <div>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
 
+          const myToken = localStorage.getItem("token");
+          console.log(myToken);
+
           const result = await registerUser(username, password);
           console.log(result);
           localStorage.setItem("token", result.data.token);
-          // const myToken = localStorage.getItem("token");
+          setToken(result.data.token);
+          localStorage.setItem("token", myToken);
         }}
       >
         <input

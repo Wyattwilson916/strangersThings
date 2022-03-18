@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import CreatePost from './CreatePost'
-import Posts from './Posts'
-import SignUp from './SignUp'
-import LoginStatus from './LoginStatus'
+import CreatePost from "./CreatePost";
+import Posts from "./Posts";
+import SignUp from "./SignUp";
+import LoginStatus from "./LoginStatus";
 import { myData } from "../api";
 
 //    make sure to include: Make a navbar inside. Own component and create routes inside of our routes
@@ -20,10 +20,10 @@ function Home() {
     if (localStorageToken !== "") {
       setToken(localStorageToken);
       async function fetchUserData() {
-          console.log(token)
+        console.log(token);
         try {
           const myInfo = await myData(localStorageToken);
-        //   console.log(myInfo)
+          //   console.log(myInfo)
           setUserPosts(myInfo.data.posts);
           setUserMessages(myInfo.data.messages);
           setCurrentUsername(myInfo.data.username);
@@ -37,10 +37,9 @@ function Home() {
     }
   }, []);
 
-  useEffect(() => {
-  }, [token]);
+  useEffect(() => {}, [token]);
   //  console.log(userPosts, 'userPosts', userMessages, 'userMessages', userId, 'userId', currentUsername, 'currentUsername');
-
+  console.log(userMessages);
   return (
     <div>
       <SignUp setToken={setToken} />

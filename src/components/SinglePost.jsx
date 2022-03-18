@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { updatePost, deletePost } from "../api";
+import Message from "./Message";
 
 const SinglePost = ({ token, post, posts, setPosts, userObj }) => {
   const [postTitle, setPostTitle] = useState("");
-    // console.log(userObj)    
+  // console.log(userObj)
   const handleSubmit = async (e, postId) => {
     e.preventDefault();
     const { data } = await updatePost({ title: postTitle }, token, postId);
@@ -46,6 +47,7 @@ const SinglePost = ({ token, post, posts, setPosts, userObj }) => {
 
   return (
     <div>
+      <Message postId={post._id} />
       <h1>{post.title}</h1>
       <h2>{post.description}</h2>
       <h3>
@@ -59,5 +61,5 @@ const SinglePost = ({ token, post, posts, setPosts, userObj }) => {
     </div>
   );
 };
-
+// Have a message form
 export default SinglePost;
