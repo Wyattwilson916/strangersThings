@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "./components/Navbar";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Main from "./components/Main";
+import Home from "./components/Home";
 import Posts from "./components/Posts";
 import LoginStatus from "./components/LoginStatus";
 import SignUp from "./components/SignUp";
@@ -17,7 +17,7 @@ const App = () => {
         <Route path='/login' component={LoginStatus}/>
         <Route path='/sign-up' component={SignUp}/>
         <Route path='/create-post' component={CreatePost}/>
-        <Route path='/' component={Main}/>
+        <Route path='/' component={Home}/>
       </Switch>
     </div>
   );

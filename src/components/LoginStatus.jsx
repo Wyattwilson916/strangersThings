@@ -8,39 +8,45 @@
 //
 // Logout button appears when logged in
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { userLogin } from "../api";
 
 const LoginStatus = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await userLogin(username, password);
     console.log(result);
     localStorage.setItem("token", result.data.token);
-    const myToken = localStorage.getItem("token");
+    setLoginStatus(true)
   };
 
-  const handleLogout = async (e, token) => {
+  const handleLogout = (e) => {
     e.preventDefault();
-    localStorage.removeItem(token);
+    localStorage.removeItem("token"); // Need to update login state
+    setLoginStatus(false)
   };
 
-  // if(login === true){
+  useEffect(() => {
+
+  }, [loginStatus])
+
+  // if(loggedIn === true){
   //   hide Login, show logout
   // }
 
   return (
     <div>
-      {localStorage.getItem('token') ? (
-        <button onClick={() => handleLogout(e, token)}>Logout</button>
+      {loginStatus ? (
+        <button onClick={handleLogout}>Logout</button>
       ) : (
         <form
           onSubmit={(e) => {
             handleSubmit(e);
-        }}
+          }}
         >
           <input
             value={username}

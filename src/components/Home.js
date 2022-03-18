@@ -8,7 +8,7 @@ import { myData } from "../api";
 
 //    make sure to include: Make a navbar inside. Own component and create routes inside of our routes
 
-function Main() {
+function Home() {
   const [token, setToken] = useState("");
   const [userPosts, setUserPosts] = useState([]);
   const [userMessages, setUserMessages] = useState([]);
@@ -53,4 +53,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Home;

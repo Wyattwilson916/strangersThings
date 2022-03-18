@@ -9,12 +9,17 @@ const NavBar = (props) => {
           <Link to={"/"} className="nav_item">
             Home
           </Link>
-          <Link to={"/login"} className="nav_item">
-            Login
-          </Link>
-          <Link to={"/sign-up"} className="nav_item">
-            Sign Up
-          </Link>
+
+          {localStorage.getItem('token') ? null : (
+            <>
+              <Link to={"/login"} className="nav_item">
+                Login
+              </Link>
+              <Link to={"/sign-up"} className="nav_item">
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

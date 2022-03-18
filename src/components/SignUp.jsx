@@ -15,7 +15,7 @@ const SignUp = ({ setToken }) => {
           const result = await registerUser(username, password);
           console.log(result);
           localStorage.setItem("token", result.data.token);
-          const myToken = localStorage.getItem("token");
+          // const myToken = localStorage.getItem("token");
         }}
       >
         <input
