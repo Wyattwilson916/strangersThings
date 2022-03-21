@@ -33,10 +33,12 @@ const Profile = ({ postId, post }) => {
   return (
     <div>
       <h2>{currentUsername}'s Profile </h2>
-      <h4>{userMessages.length ? `Your Messages${userMessages}`: 'Message inbox empty'}</h4>
+      <h4>
+        {currentUsername}: You have no active messages at the moment! <br />
+        Don't Worry! You'll get a request soon!
+      </h4>
     </div>
   );
-  // <Message postId={post._id} />
 };
 
 export default Profile;

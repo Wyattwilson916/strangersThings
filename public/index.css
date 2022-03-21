@@ -1,0 +1,14 @@
+body {
+  background-color: lightgrey;
+}
+
+.nav_bar_container {
+  display: flex;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.main_title {
+  text-align: center;
+  font-size: 35px;
+}

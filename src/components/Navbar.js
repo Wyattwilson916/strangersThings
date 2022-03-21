@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = ({ token }) => {
-  
   useEffect(() => {
-    localStorage.getItem('token')
+    localStorage.getItem("token");
   }, [token]);
 
   return (
@@ -14,15 +13,22 @@ const NavBar = ({ token }) => {
           <Link to={"/"} className="nav_item">
             Home
           </Link>
+          <Link to={"/Profile"} className="nav_item">
+            Profile
+          </Link>
+          <Link to={"/posts"} className="nav_item">
+            Posts
+          </Link>
 
           {localStorage.getItem("token") ? (
             <>
-              <Link to={"/profile"} className="nav-item">
+              {/* <Link to={"/profile"} className="nav-item">
                 Profile
-              </Link>
+              </Link> */}
               <Link to={"/login"} className="nav_item">
                 Logout
               </Link>
+              <br />
             </>
           ) : (
             <>

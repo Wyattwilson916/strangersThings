@@ -23,12 +23,11 @@ function Home() {
         console.log(token);
         try {
           const myInfo = await myData(localStorageToken);
-          //   console.log(myInfo)
+
           setUserPosts(myInfo.data.posts);
           setUserMessages(myInfo.data.messages);
           setCurrentUsername(myInfo.data.username);
           setUserId(myInfo.data._id);
-          // console.log(myInfo.data)
         } catch (error) {
           console.log(error);
         }
@@ -38,14 +37,14 @@ function Home() {
   }, []);
 
   useEffect(() => {}, [token]);
-  //  console.log(userPosts, 'userPosts', userMessages, 'userMessages', userId, 'userId', currentUsername, 'currentUsername');
-  // console.log(userMessages);
+
   return (
     <div>
       <Posts
         token={token}
         userObj={{ userPosts, userMessages, currentUsername, userId }}
       />
+      {/* <h1> Welcome {userName}</h1> */}
     </div>
   );
 }

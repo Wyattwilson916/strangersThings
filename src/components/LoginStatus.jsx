@@ -21,24 +21,24 @@ const LoginStatus = ({ setToken }) => {
     const result = await userLogin(username, password);
     console.log(result);
     localStorage.setItem("token", result.data.token);
-    setLoginStatus(true)
+    setLoginStatus(true);
   };
 
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token"); // Need to update login state
-    setLoginStatus(false)
+    setLoginStatus(false);
   };
 
   useEffect(() => {
-    if(localStorage.getItem('token')){
-      setLoginStatus(true)
+    if (localStorage.getItem("token")) {
+      setLoginStatus(true);
     }
+  }, [loginStatus]);
 
-  }, [loginStatus])
-
+  // const logOut =
   // if(loggedIn === true){
-  //   hide Login, show logout
+  //   hide userLogin, show logou
   // }
 
   return (
