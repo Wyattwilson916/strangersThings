@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { updatePost, deletePost } from "../api";
-import Message from "./Message";
+import Message from "./Profile";
 
 const SinglePost = ({ token, post, posts, setPosts, userObj }) => {
   const [postTitle, setPostTitle] = useState("");
@@ -47,7 +47,7 @@ const SinglePost = ({ token, post, posts, setPosts, userObj }) => {
 
   return (
     <div>
-      <Message postId={post._id} />
+      
       <h1>{post.title}</h1>
       <h2>{post.description}</h2>
       <h3>

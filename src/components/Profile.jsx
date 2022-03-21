@@ -1,14 +1,10 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import CreatePost from "./CreatePost";
-import Posts from "./Posts";
-import SignUp from "./SignUp";
-import LoginStatus from "./LoginStatus";
+// Have a message form, returning post form Single Post to make the form
+
+//Bring to single post and pass the message form the post Id
+import React, { useState, useEffect } from "react";
 import { myData } from "../api";
 
-//    make sure to include: Make a navbar inside. Own component and create routes inside of our routes
-
-function Home() {
+const Profile = ({ postId, post }) => {
   const [token, setToken] = useState("");
   const [userPosts, setUserPosts] = useState([]);
   const [userMessages, setUserMessages] = useState([]);
@@ -20,15 +16,12 @@ function Home() {
     if (localStorageToken !== "") {
       setToken(localStorageToken);
       async function fetchUserData() {
-        console.log(token);
         try {
           const myInfo = await myData(localStorageToken);
-          //   console.log(myInfo)
           setUserPosts(myInfo.data.posts);
           setUserMessages(myInfo.data.messages);
           setCurrentUsername(myInfo.data.username);
           setUserId(myInfo.data._id);
-          // console.log(myInfo.data)
         } catch (error) {
           console.log(error);
         }
@@ -37,17 +30,13 @@ function Home() {
     }
   }, []);
 
-  useEffect(() => {}, [token]);
-  //  console.log(userPosts, 'userPosts', userMessages, 'userMessages', userId, 'userId', currentUsername, 'currentUsername');
-  // console.log(userMessages);
   return (
     <div>
-      <Posts
-        token={token}
-        userObj={{ userPosts, userMessages, currentUsername, userId }}
-      />
+      <h2>{currentUsername}'s Profile </h2>
+      <h4>{userMessages.length ? `Your Messages${userMessages}`: 'Message inbox empty'}</h4>
     </div>
   );
-}
+  // <Message postId={post._id} />
+};
 
-export default Home;
+export default Profile;

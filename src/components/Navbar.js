@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = (props) => {
+const NavBar = ({ token }) => {
+  
+  useEffect(() => {
+    localStorage.getItem('token')
+  }, [token]);
+
   return (
     <div className="nav_bar_container">
       <div className="link_container">
@@ -10,7 +15,16 @@ const NavBar = (props) => {
             Home
           </Link>
 
-          {localStorage.getItem('token') ? null : (
+          {localStorage.getItem("token") ? (
+            <>
+              <Link to={"/profile"} className="nav-item">
+                Profile
+              </Link>
+              <Link to={"/login"} className="nav_item">
+                Logout
+              </Link>
+            </>
+          ) : (
             <>
               <Link to={"/login"} className="nav_item">
                 Login

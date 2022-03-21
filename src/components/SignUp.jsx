@@ -1,26 +1,25 @@
 import React, { useState } from "react";
 import { registerUser } from "../api";
 
-const SignUp = ({ setToken }) => {
+const SignUp = ({ token, setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   // Add a 'min' property to password length
   // Make user/pass required
+  const onSignUp = async(e) => {
+    e.preventDefault();
+    console.log(setToken)
+    const result = await registerUser(username, password);
+    localStorage.setItem("token", await result.data.token);
+    const myToken = await result.data.token
+    setToken(myToken);
+    
+  }
+    
   return (
     <div>
       <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-
-          const myToken = localStorage.getItem("token");
-          console.log(myToken);
-
-          const result = await registerUser(username, password);
-          console.log(result);
-          localStorage.setItem("token", result.data.token);
-          setToken(result.data.token);
-          localStorage.setItem("token", myToken);
-        }}
+      onSubmit={onSignUp}
       >
         <input
           value={username}

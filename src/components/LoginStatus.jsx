@@ -31,6 +31,9 @@ const LoginStatus = ({ setToken }) => {
   };
 
   useEffect(() => {
+    if(localStorage.getItem('token')){
+      setLoginStatus(true)
+    }
 
   }, [loginStatus])
 
@@ -41,7 +44,7 @@ const LoginStatus = ({ setToken }) => {
   return (
     <div>
       {loginStatus ? (
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleLogout}>Log Out</button>
       ) : (
         <form
           onSubmit={(e) => {

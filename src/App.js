@@ -7,23 +7,29 @@ import Posts from "./components/Posts";
 import LoginStatus from "./components/LoginStatus";
 import SignUp from "./components/SignUp";
 import CreatePost from "./components/CreatePost";
+import Profile from "./components/Profile";
 
 const App = () => {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    console.log(token);
-  }, []);
+    const localToken = localStorage.getItem('token')
+    localToken ? setToken(localToken) : null
+    // console.log(token, '!!!THIS IS IN APP ON THE CALL OF USE EFFECT()!!!');
+  }, [token]);
 
   return (
     <div className="main_container">
       <NavBar />
-      {/* <SignUp setToken={setToken} /> */}
+      {/* {console.log(token, 'THIS IS TOKEN FROM APP JS')} */}
       <h1 className="main_title">Stranger's Things</h1>
       <Switch>
         <Route path="/posts" component={Posts} />
+        <Route path="/profile" component={Profile}/>
         <Route path="/login" component={LoginStatus} />
-        <Route path="/sign-up" component={SignUp} />
+        <Route path="/sign-up">
+          <SignUp token={token} setToken={setToken}/>
+        </Route>
         <Route path="/create-post" component={CreatePost} />
         <Route path="/" component={Home} />
       </Switch>
